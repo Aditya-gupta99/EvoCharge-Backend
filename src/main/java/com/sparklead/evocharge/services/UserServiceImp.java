@@ -1,6 +1,7 @@
 package com.sparklead.evocharge.services;
 
 import com.sparklead.evocharge.models.RegisterUser;
+import com.sparklead.evocharge.models.User;
 import com.sparklead.evocharge.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +23,7 @@ public class UserServiceImp implements UserService {
 
     @Override
     public User registerUser(RegisterUser registerUser) {
-        User user = new User("","","","","","","");
+        User user = new User();
         user.setEmail(registerUser.getEmail());
         user.setFirstName(registerUser.getName());
         user.setPassword(passwordEncoder.encode(registerUser.getPassword()));

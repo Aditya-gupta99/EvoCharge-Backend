@@ -1,7 +1,7 @@
 package com.sparklead.evocharge.controllers;
 
 import com.sparklead.evocharge.models.RegisterUser;
-import com.sparklead.evocharge.services.User;
+import com.sparklead.evocharge.models.User;
 import com.sparklead.evocharge.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

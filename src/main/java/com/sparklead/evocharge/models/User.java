@@ -1,17 +1,15 @@
-package com.sparklead.evocharge.services;
+package com.sparklead.evocharge.models;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Set;
-
 @Data
-@Builder
 @Document(collection = "User")
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@NoArgsConstructor
 public class User {
 
     @Id
