@@ -1,6 +1,7 @@
 package com.sparklead.evocharge.services;
 
-import com.sparklead.evocharge.models.RegisterUser;
+import com.sparklead.evocharge.payload.SignInRequest;
+import com.sparklead.evocharge.payload.SignupRequest;
 import com.sparklead.evocharge.models.User;
 import com.sparklead.evocharge.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,18 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User registerUser(RegisterUser registerUser) {
+    public User registerUser(SignupRequest signupRequest) {
         User user = new User();
-        user.setEmail(registerUser.getEmail());
-        user.setFirstName(registerUser.getName());
-        user.setPassword(passwordEncoder.encode(registerUser.getPassword()));
+        user.setEmail(signupRequest.getEmail());
+        user.setFirstName(signupRequest.getFirstName());
+        user.setLastName(signupRequest.getLastName());
+        user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
         userRepository.save(user);
         return user;
+    }
+
+    @Override
+    public Boolean verifyUser(User user, SignInRequest signInRequest) {
+        return passwordEncoder.matches(signInRequest.getPassword(),user.getPassword());
     }
 }

@@ -1,19 +1,16 @@
-package com.sparklead.evocharge.models;
+package com.sparklead.evocharge.payload;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterUser {
-
-    private String name;
-
-    private String password;
+public class SignInRequest {
 
     private String email;
 
-    private String matchingPassword;
+    private String password;
 }
