@@ -8,12 +8,10 @@ import com.sparklead.evocharge.payload.SignupRequest;
 import com.sparklead.evocharge.repositories.UserRepository;
 import com.sparklead.evocharge.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpServerErrorException;
 
 @RestController
 public class AuthController {
@@ -32,8 +30,7 @@ public class AuthController {
 //            throw new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR,"Email is already in use!");
             throw new EmailAlreadyUseException("Email is already in use!");
         }
-        userService.registerUser(signupRequest);
-        return ResponseEntity.ok(new SignUpResponse("User registered successfully!"));
+        return ResponseEntity.ok(new SignUpResponse(userService.registerUser(signupRequest)));
     }
 
     @PostMapping("/signIn")
