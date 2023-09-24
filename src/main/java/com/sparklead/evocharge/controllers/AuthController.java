@@ -3,6 +3,7 @@ package com.sparklead.evocharge.controllers;
 import com.sparklead.evocharge.error.EmailAlreadyUseException;
 import com.sparklead.evocharge.models.User;
 import com.sparklead.evocharge.payload.SignInRequest;
+import com.sparklead.evocharge.payload.SignInResponse;
 import com.sparklead.evocharge.payload.SignUpResponse;
 import com.sparklead.evocharge.payload.SignupRequest;
 import com.sparklead.evocharge.repositories.UserRepository;
@@ -38,7 +39,7 @@ public class AuthController {
         User user = userRepository.findByEmail(signInRequest.getEmail());
         if(user==null) return  ResponseEntity.badRequest().body("Error:User not exits");
         if (userService.verifyUser(user, signInRequest)) {
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok(new SignInResponse(user));
         }
         return ResponseEntity.badRequest().body("Error:Login Unsuccessful");
     }
